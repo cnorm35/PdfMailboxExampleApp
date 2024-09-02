@@ -6,4 +6,5 @@ class ApplicationMailbox < ActionMailbox::Base
   routing /guess-my-age/i => :guess_my_age
   routing /csv/i => :csv
   routing /next-up/i => :next_up
+  routing :all => :catch_all
 end
