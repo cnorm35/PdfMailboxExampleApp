@@ -8,4 +8,10 @@ class CsvMailboxTest < ActionMailbox::TestCase
   #     subject: "Hello world!",
   #     body: "Hello?"
   # end
+  test 'it processes a CSV attachment' do
+    inbound_email = create_inbound_email_from_fixture("csv_email.eml")
+    assert_difference 'User.count', 1 do
+      CsvMailbox.new(inbound_email).process
+    end
+  end
 end
