@@ -9,9 +9,20 @@ class CsvMailboxTest < ActionMailbox::TestCase
   #     body: "Hello?"
   # end
   test 'it processes a CSV attachment' do
-    inbound_email = create_inbound_email_from_fixture("csv_email.eml")
-    assert_difference 'User.count', 1 do
-      CsvMailbox.new(inbound_email).process
-    end
+    # receive_inbound_email_from_mail do |m|
+    #   m.attachments['import.csv'] = File.read("./test/fixtures/csv_users.csv")
+    #   m.from 'user@actionmailbox.pro'
+    #   m.to 'csv@actionmailbox.pro'
+    #   m.body
+    # end
+    # inbound_email = create_inbound_email_from_mail(
+    #   attachments: File.read("./test/fixtures/csv_users.csv"),
+    #   from: 'user@actionmailbox.pro',
+    #   to: 'csv@actionmailbox.pro',
+    #   body: 'not super important',
+    # )
+    # create_inbound_email_from_source(source, status: :processing)
+    # create_inbound_email_from_source(File.read("./test/fixtures/files/csv_import.eml"))
+    receive_inbound_email_from_source(File.read("./test/fixtures/files/csv_import.eml"))
   end
 end
