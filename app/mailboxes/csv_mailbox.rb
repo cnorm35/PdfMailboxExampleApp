@@ -2,7 +2,6 @@ class CsvMailbox < ApplicationMailbox
   require 'csv'
 
   def process
-    debugger
     attachment_data = mail.attachments.first.body.decoded
 
     CSV.parse(attachment_data, headers: true) do |row|
